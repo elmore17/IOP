@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index3</title>
+    <script>
+        function search() {
+            var query = document.getElementById("search-input").value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var result = xhr.responseText;
+                    document.getElementById("search-result").innerHTML = result;
+                }
+            };
+            xhr.open("POST", "/search", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("query=" + query);
+        }
+    </script>
+</head>
+<body>
+    <h1>Web-страница 3 (AJAX-поиск)</h1>
+    <label for="search-input">Введите начальные буквы:</label>
+    <input type="text" id="search-input" oninput="search()">
+    <div id="search-result"></div>
+</body>
+</html>

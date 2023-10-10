@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Parser</title>
+</head>
+<body>
+    <h1>RSS Parser</h1>
+    <form method="POST">
+        <label for="start_date_time">Start Date and Time:</label>
+        <input type="datetime-local" id="start_date_time" name="start_date_time" required><br><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="datetime-local" id="end_date_time" name="end_date_time" required><br><br>
+
+        <label for="format_type">Format Type:</label>
+        <select id="format_type" name="format_type" required>
+            <option value="csv">CSV</option>
+            <option value="txt">TXT</option>
+            <option value="json">JSON</option>
+        </select><br><br>
+
+        <input type="submit" value="Parse and Download">
+    </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API запрос</title>
+  <style>
+    #inputField {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="inputField" placeholder="Введите код страны">
+  <button onclick="sendRequest()">Отправить запрос</button>
+  <br>
+  <textarea id="outputField" rows="15" cols="70" readonly></textarea>
+
+  <script>
+    function sendRequest() {
+      var baseUrl = "http://localhost/suggestions/api/4_1/rs/findById/country";
+      var token = "3f2782049e3fd3109968ceaa25b631835f052660";
+      var query = document.getElementById("inputField").value;
+      var out = document.getElementById("outputField");
+
+      var url = baseUrl + "?query=" + encodeURIComponent(query); // URL с параметром запроса
+
+      var options = {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": "Token " + token
+          },
+      }
+
+      fetch(url, options)
+      .then(response => response.json())
+      .then(result => {
+        out.innerHTML  = result["suggestions"][0]['value'];
+      })
+      .catch(error => console.log("error", error));
+    }
+  </script>
+</body>
+</html>
